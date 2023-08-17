@@ -1,57 +1,53 @@
-// step-1 add click event to the deposit button
+// 1 get the input value using function
+function getInputValue(input){
+    const inputId = document.getElementById(input);
+    const inputIdValue = parseFloat(inputId.value);
+    inputId.value = '';
+    return inputIdValue;
+}
+// 3 get the Deposit value using function
 
-const depositBtn = document.getElementById('deposit-btn');
+function getDepositValue(deposit){
+    const depositId = document.getElementById(deposit);
+    const depositIdValue = parseFloat(depositId.innerText);
+    return depositIdValue;
+}
 
-depositBtn.addEventListener('click', function(){
 
-    // step-2 get the deposit input value and convert into number type
-    const depositNew = document.getElementById('deposit-new');
-    const depositNewValue = parseFloat(depositNew.value);
+// 6 set the deposit value input value and deposit value together
+function setDepositValue(elementId, newValue){
+    const textElement = document.getElementById(elementId);
+    textElement.innerText = newValue;
+}
 
-    // step-3 clear the input field after click 
-    depositNew.value = '';
 
-     // step-4 get the deposit added value and convert into number type
-     const depositAdded = document.getElementById('deposit-added');
-     const depositAddedValue = parseFloat(depositAdded.innerText);
-     
-    //  step-5 added the new deposit value to the exist deposit value
-    depositAdded.innerText = depositAddedValue + depositNewValue; 
 
-    // step-6 get the total balance and add the deposit value with the exist balance
-    const balance = document.getElementById('balance');
-    const balanceValue = parseFloat(balance.innerText);
 
-    balance.innerText = balanceValue + depositNewValue;
+document.getElementById('deposit-btn').addEventListener('click', function(){
+
+    // 2 get the deposit input value when click the deposit button
+    const newInputValue = getInputValue('deposit-new');
+
+    // 4 get the deposit value when click the deposit button
+    const newDepositValue = getDepositValue('deposit-added');
+    // 5 deposit value and input deposit value added together
+
+    const newDepositAddedValue = newDepositValue + newInputValue;
+
+    // 7 set the deposit value using function
+    setDepositValue('deposit-added', newDepositAddedValue)
+
+    // 8 get balance total and added new deposit value
+
+     const balanceTotal = getDepositValue('balance');
+     const newBalanceTotal = balanceTotal + newDepositAddedValue;
+     setDepositValue('balance', newBalanceTotal);
+    
+    
+    
+    
+
+
     
 })
 
-
-// withdraw button 
-// step-1 add click event to the withdraw button
-
-const withdrawBtn = document.getElementById('withdraw-btn');
-
-withdrawBtn.addEventListener('click', function(){
-
-    // step-2 get the withdraw input value and convert into number type
-    const withdrawNew = document.getElementById('withdraw-new');
-    const withdrawNewValue = parseFloat(withdrawNew.value);
-
-    // step-3 clear the input field after click 
-    withdrawNew.value = '';
-
-     // step-4 get the withdraw added value and convert into number type
-     const withdrawAdded = document.getElementById('withdraw-added');
-     const withdrawAddedValue = parseFloat(withdrawAdded.innerText);
-     
-    //  step-5 added the new withdraw value to the exist withdraw value
-    withdrawAdded.innerText = withdrawAddedValue + withdrawNewValue; 
-
-    // step-6 get the total balance and add the withdraw value with the exist balance
-    const balance = document.getElementById('balance');
-    const balanceValue = parseFloat(balance.innerText);
-
-    balance.innerText = balanceValue - withdrawNewValue;
-    
-})
